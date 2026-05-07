@@ -10,4 +10,10 @@ public class CoinTest {
         Coin coin = new Coin();
         assertEquals(0.5, coin.probabilityForTails());
     }
+
+    @Test
+    void shouldReturnProbabilityOfNotGettingTails() {
+        Coin coin = new Coin();
+        assertEquals(0.5, coin.probabilityForHeads());
+    }
 }
