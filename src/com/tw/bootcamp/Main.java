@@ -1,4 +1,4 @@
-package com.tw.bootcamp.problem1;
+package com.tw.bootcamp;
 
 public class Main {
     static void main() {

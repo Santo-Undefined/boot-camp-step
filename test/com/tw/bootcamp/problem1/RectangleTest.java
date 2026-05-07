@@ -8,13 +8,25 @@ class RectangleTest {
 
     @Test
     void shouldCalculateArea() {
-        Rectangle rectangle = new Rectangle(4,3);
+        Rectangle rectangle = Rectangle.createRectangle(4,3);
         assertEquals(12, rectangle.area(), 0.0);
     }
 
     @Test
     void shouldCalculatePerimeter() {
-        Rectangle rectangle = new Rectangle(4,3);
+        Rectangle rectangle = Rectangle.createRectangle(4,3);
         assertEquals(14, rectangle.perimeter(), 0.0);
+    }
+
+    @Test
+    void shouldCalculateAreaForSquare() {
+        Rectangle rectangle = Rectangle.createSquare(4);
+        assertEquals(16.0, rectangle.area(), 0.0);
+    }
+
+    @Test
+    void shouldCalculatePerimeterOfSquare() {
+        Rectangle rectangle = Rectangle.createSquare(3);
+        assertEquals(12, rectangle.perimeter(), 0.0);
     }
 }
