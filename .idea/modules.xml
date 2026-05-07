@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/boot-camp.iml" filepath="$PROJECT_DIR$/boot-camp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-bootcamp.iml" filepath="$PROJECT_DIR$/java-bootcamp.iml" />
     </modules>
   </component>
 </project>
