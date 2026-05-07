@@ -6,4 +6,7 @@ public class Rectangle {
         return height * width;
     }
 
+    public static double perimeter(double height, double width) {
+        return 2 * (height + width);
+    }
 }

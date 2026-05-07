@@ -13,6 +13,11 @@ class RectangleTest {
 
     @Test
     void shouldAcceptDifferentTypesOfArguments() {
-        assertEquals(12, Rectangle.area(4, 3.0), 0);
+        assertEquals(12, Rectangle.area(4, 3.0), 0.0);
+    }
+
+    @Test
+    void shouldCalculatePerimeter() {
+        assertEquals(14, Rectangle.perimeter(3,4), 0.0);
     }
 }
