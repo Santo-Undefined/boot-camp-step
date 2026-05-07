@@ -20,4 +20,9 @@ class RectangleTest {
     void shouldCalculatePerimeter() {
         assertEquals(14, Rectangle.perimeter(3,4), 0.0);
     }
+
+    @Test
+    void shouldAcceptDifferentTypesOfArgumentsForPerimeter() {
+        assertEquals(12.0, Rectangle.perimeter(3.5, 2.5), 0.0);
+    }
 }
