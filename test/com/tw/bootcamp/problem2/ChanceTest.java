@@ -3,37 +3,44 @@ package com.tw.bootcamp.problem2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChanceTest {
     @Test
-    void shouldRepresentProbabilityOfGettingTails() {
-        Chance chanceOfTails = new Chance(0.5);
-        assertEquals(new Chance(0.5),chanceOfTails);
+    void shouldRepresentProbabilityOfGettingTails() throws InvalidProbabilityRangeException {
+        Chance chanceOfTails = Chance.create(0.5);
+        assertEquals(Chance.create(0.5), chanceOfTails);
     }
 
     @Test
-    void shouldRepresentProbabilityOfComplementaryGettingTails() {
-        Chance chance = new Chance(0.3);
-        assertEquals(new Chance(0.7),chance.complementary());
+    void shouldRepresentProbabilityOfComplementaryGettingTails() throws InvalidProbabilityRangeException {
+        Chance chanceOfNotTails = Chance.create(0.3).complementary();
+        assertEquals(Chance.create(0.7), chanceOfNotTails);
     }
 
     @Test
-    void shouldRepresentTheProbabilityOfGettingTailsOnTwoCoins() {
-        Chance c1 = new Chance(0.5);
-        Chance c2 = new Chance(0.5);
-        assertEquals(new Chance(0.25), c1.joint(c2));
+    void shouldRepresentTheProbabilityOfGettingTailsOnTwoCoins() throws InvalidProbabilityRangeException {
+        Chance chanceOfCoin1ForTails = Chance.create(0.5);
+        Chance chanceOfCoin2ForTails = Chance.create(0.5);
+        assertEquals(Chance.create(0.25), chanceOfCoin1ForTails.joint(chanceOfCoin2ForTails));
     }
 
     @Test
-    void shouldRepresentTheProbabilityOfGetting3OnADice() {
-        Chance chance = new Chance(0.16);
-        assertEquals(new Chance(0.16), chance);
+    void shouldRepresentTheProbabilityOfGetting3OnADice() throws InvalidProbabilityRangeException {
+        Chance chanceOfGetting3OnDice = Chance.create(0.16);
+        assertEquals(Chance.create(0.16), chanceOfGetting3OnDice);
     }
 
     @Test
-    void shouldRepresentTheProbabilityOfGettingAtLeastOneTail() {
-        Chance c1  = new Chance(0.5);
-        Chance c2 = new Chance(0.5);
-        assertEquals(new Chance(0.75), c1.disjunctive(c2));
+    void shouldRepresentTheProbabilityOfGettingAtLeastOneTail() throws InvalidProbabilityRangeException {
+        Chance chanceOfCoin1ForTails = Chance.create(0.5);
+        Chance chanceOfCoin2ForTails = Chance.create(0.5);
+        assertEquals(Chance.create(0.75), chanceOfCoin1ForTails.disjunctive(chanceOfCoin2ForTails));
+    }
+
+    @Test
+    void shouldThrowErrorOnOutOfBoundProbabilityValues() {
+        assertThrows(InvalidProbabilityRangeException.class, () -> Chance.create(-1.0));
+        assertThrows(InvalidProbabilityRangeException.class, () -> Chance.create(2.0));
     }
 }

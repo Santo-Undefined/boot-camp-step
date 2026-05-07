@@ -6,8 +6,15 @@ public class Chance {
 
     private final double chance;
 
-    public Chance(double chance) {
+    private Chance(double chance) {
         this.chance = chance;
+    }
+
+    public static Chance create(double chance) throws InvalidProbabilityRangeException {
+        if(chance < 0.0 || chance > 1.0) {
+            throw new InvalidProbabilityRangeException();
+        }
+        return new Chance(chance);
     }
 
     @Override
@@ -22,15 +29,15 @@ public class Chance {
         return Objects.hashCode(chance);
     }
 
-    public Chance joint(Chance c) {
-        return new Chance(chance * c.chance);
+    public Chance joint(Chance c) throws InvalidProbabilityRangeException {
+        return create(chance * c.chance);
     }
 
-    public Chance complementary() {
-        return new Chance(1 - chance);
+    public Chance complementary() throws InvalidProbabilityRangeException {
+        return create(1 - chance);
     }
 
-    public Chance disjunctive(Chance c) {
-        return complementary().joint(c.complementary()).complementary();
+    public Chance disjunctive(Chance c) throws InvalidProbabilityRangeException {
+        return create(chance + c.chance - (chance * c.chance));
     }
 }
