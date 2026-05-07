@@ -1,7 +1,5 @@
 package com.tw.bootcamp.problem1;
 
-import java.awt.*;
-
 public class Rectangle {
 
     private final double height;
