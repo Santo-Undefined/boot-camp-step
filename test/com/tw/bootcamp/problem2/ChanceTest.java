@@ -12,16 +12,16 @@ public class ChanceTest {
     }
 
     @Test
-    void shouldRepresentProbabilityOfNotGettingTails() {
+    void shouldRepresentProbabilityOfComplementaryGettingTails() {
         Chance chance = new Chance(0.3);
-        assertEquals(new Chance(0.7),chance.not());
+        assertEquals(new Chance(0.7),chance.complementary());
     }
 
     @Test
     void shouldRepresentTheProbabilityOfGettingTailsOnTwoCoins() {
         Chance c1 = new Chance(0.5);
         Chance c2 = new Chance(0.5);
-        assertEquals(new Chance(0.25), c1.and(c2));
+        assertEquals(new Chance(0.25), c1.joint(c2));
     }
 
     @Test
@@ -34,6 +34,6 @@ public class ChanceTest {
     void shouldRepresentTheProbabilityOfGettingAtLeastOneTail() {
         Chance c1  = new Chance(0.5);
         Chance c2 = new Chance(0.5);
-        assertEquals(new Chance(0.75), c1.or(c2));
+        assertEquals(new Chance(0.75), c1.disjunctive(c2));
     }
 }

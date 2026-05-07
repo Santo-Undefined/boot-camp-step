@@ -22,19 +22,15 @@ public class Chance {
         return Objects.hashCode(chance);
     }
 
-    public Chance and(Chance c) {
+    public Chance joint(Chance c) {
         return new Chance(chance * c.chance);
     }
 
-//    public Chance or(Chance c) {
-//        return new Chance(chance + c.chance - (chance * c.chance));
-//    }
-
-    public Chance not() {
+    public Chance complementary() {
         return new Chance(1 - chance);
     }
 
-    public Chance or(Chance c) {
-        return not().and(c.not()).not();
+    public Chance disjunctive(Chance c) {
+        return complementary().joint(c.complementary()).complementary();
     }
 }
