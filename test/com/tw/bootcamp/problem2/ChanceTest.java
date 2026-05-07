@@ -34,7 +34,6 @@ public class ChanceTest {
     void shouldRepresentTheProbabilityOfGettingAtLeastOneTail() {
         Chance c1  = new Chance(0.5);
         Chance c2 = new Chance(0.5);
-
         assertEquals(new Chance(0.75), c1.or(c2));
     }
 }

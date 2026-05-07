@@ -23,14 +23,18 @@ public class Chance {
     }
 
     public Chance and(Chance c) {
-        return new Chance(this.chance * c.chance);
+        return new Chance(chance * c.chance);
     }
 
-    public Chance or(Chance c) {
-        return new Chance(chance + c.chance - and(c).chance);
-    }
+//    public Chance or(Chance c) {
+//        return new Chance(chance + c.chance - (chance * c.chance));
+//    }
 
     public Chance not() {
         return new Chance(1 - chance);
+    }
+
+    public Chance or(Chance c) {
+        return not().and(c.not()).not();
     }
 }
