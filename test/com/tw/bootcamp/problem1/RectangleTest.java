@@ -7,22 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class RectangleTest {
 
     @Test
-    void shouldAcceptIntParams() {
-        assertEquals(12, Rectangle.area(4,3), 0.0);
-    }
-
-    @Test
-    void shouldAcceptDifferentTypesOfArguments() {
-        assertEquals(12, Rectangle.area(4, 3.0), 0.0);
+    void shouldCalculateArea() {
+        Rectangle rectangle = new Rectangle(4,3);
+        assertEquals(12, rectangle.area(), 0.0);
     }
 
     @Test
     void shouldCalculatePerimeter() {
-        assertEquals(14, Rectangle.perimeter(3,4), 0.0);
-    }
-
-    @Test
-    void shouldAcceptDifferentTypesOfArgumentsForPerimeter() {
-        assertEquals(12.0, Rectangle.perimeter(3.5, 2.5), 0.0);
+        Rectangle rectangle = new Rectangle(4,3);
+        assertEquals(14, rectangle.perimeter(), 0.0);
     }
 }
