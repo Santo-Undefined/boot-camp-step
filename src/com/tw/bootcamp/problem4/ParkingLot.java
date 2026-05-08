@@ -15,4 +15,8 @@ public class ParkingLot {
     public int remainingSlots(){
         return plot.remainingSpace();
     }
+
+    public boolean isFull() {
+        return plot.isFull();
+    }
 }
