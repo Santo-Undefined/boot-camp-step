@@ -10,7 +10,7 @@ public class VolumeTest {
         Volume oneGallon = Volume.gallon(1);
         Volume liter = Volume.liter(3.78);
 
-        assertEquals(oneGallon, liter);
+        assertTrue(oneGallon.isEqual(liter));
     }
 
     @Test
@@ -24,5 +24,13 @@ public class VolumeTest {
     @Test
     void shouldThrowExceptionWhenVolumeIsNegative() {
         assertThrows(NegativeVolumeException.class, () -> Volume.gallon(-1));
+    }
+
+    @Test
+    void shouldAddTwoUnitsOfVolume() {
+        Volume oneGallon = Volume.gallon(1);
+        Volume oneLiter = Volume.liter(1);
+
+        assertEquals(Volume.liter(4.78), oneLiter.add(oneGallon));
     }
 }
