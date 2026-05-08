@@ -1,6 +1,9 @@
 package com.tw.bootcamp.problem3;
 
 public class Length {
+    public static final int FEET_CONVERSION_FACTOR = 30;
+    public static final double INCH_CONVERSION_FACTOR = 2.5;
+    public static final int MM_CONVERSION_FACTOR = 10;
     private final double value;
 
     private Length(double value) {
@@ -13,11 +16,11 @@ public class Length {
     }
 
     public static Length feet(double value) throws NegativeLengthException {
-        return create(value * 30);
+        return create(value * FEET_CONVERSION_FACTOR);
     }
 
     public static Length inch(double value) throws NegativeLengthException {
-        return create(value * 2.5);
+        return create(value * INCH_CONVERSION_FACTOR);
     }
 
     public static Length cm(double value) throws NegativeLengthException {
@@ -25,7 +28,7 @@ public class Length {
     }
 
     public static Length mm(double value) throws NegativeLengthException {
-        return create(value / 10);
+        return create(value / MM_CONVERSION_FACTOR);
     }
 
     @Override

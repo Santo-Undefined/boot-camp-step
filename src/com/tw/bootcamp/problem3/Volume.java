@@ -2,6 +2,7 @@ package com.tw.bootcamp.problem3;
 
 public class Volume {
 
+    public static final double LITER_CONVERSION_FACTOR = 3.78;
     private final double value;
 
     public Volume(double value) {
@@ -17,7 +18,7 @@ public class Volume {
     }
 
     public static Volume liter(double value) throws NegativeVolumeException {
-        return create(value / 3.78);
+        return create(value / LITER_CONVERSION_FACTOR);
     }
 
     @Override
