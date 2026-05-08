@@ -37,6 +37,10 @@ public class Length {
         return Double.compare(value, length.value) == 0;
     }
 
+    public boolean isEqual(Length v){
+        return value == v.value;
+    }
+
     public Length add(Length length) {
         return create(value + length.value);
     }

@@ -27,5 +27,8 @@ public class Volume {
         return Double.compare(value, volume.value) == 0;
     }
 
+    public boolean isEqual(Volume v){
+        return value == v.value;
+    }
 
 }
