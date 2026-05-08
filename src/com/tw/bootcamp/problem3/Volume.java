@@ -31,4 +31,8 @@ public class Volume {
         return value == v.value;
     }
 
+    public Volume add(Volume length) {
+        return create(value + length.value);
+    }
+
 }

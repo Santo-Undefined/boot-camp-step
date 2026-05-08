@@ -26,4 +26,11 @@ public class VolumeTest {
         assertThrows(NegativeVolumeException.class, () -> Volume.gallon(-1));
     }
 
+    @Test
+    void shouldAddTwoUnitsOfVolume() {
+        Volume oneGallon = Volume.gallon(1);
+        Volume oneLiter = Volume.liter(1);
+
+        assertEquals(Volume.liter(4.78), oneLiter.add(oneGallon));
+    }
 }
