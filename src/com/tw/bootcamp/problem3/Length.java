@@ -38,8 +38,8 @@ public class Length {
         return isWithinTolerance(length.value);
     }
 
-    public boolean isEqual(Length v){
-        return isWithinTolerance(v.value);
+    public boolean isEqual(Length l){
+        return isWithinTolerance(l.value);
     }
 
     private boolean isWithinTolerance (double otherValue){
