@@ -33,4 +33,8 @@ public class Length {
         if (!(o instanceof Length length)) return false;
         return Double.compare(value, length.value) == 0;
     }
+
+    public Length add(Length length) {
+        return create(value + length.value);
+    }
 }

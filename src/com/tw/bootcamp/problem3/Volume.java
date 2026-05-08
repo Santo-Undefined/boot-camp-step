@@ -1,7 +1,5 @@
 package com.tw.bootcamp.problem3;
 
-import java.util.Objects;
-
 public class Volume {
 
     private final double value;
@@ -27,4 +25,6 @@ public class Volume {
         if (!(o instanceof Volume volume)) return false;
         return Double.compare(value, volume.value) == 0;
     }
+
+
 }

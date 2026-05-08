@@ -39,4 +39,11 @@ class LengthTest {
         Length mm = Length.mm(10);
         assertEquals(cm, mm);
     }
+
+    @Test
+    void shouldAddTwoLengths() {
+        Length twoInch = Length.inch(2);
+        Length threeInch = Length.inch(3);
+        assertEquals(Length.inch(5), twoInch.add(threeInch));
+    }
 }
