@@ -32,4 +32,11 @@ class LengthTest {
     void shouldThrowExceptionOnNegativeLength() {
         assertThrows(NegativeLengthException.class, () -> Length.inch(-12));
     }
+
+    @Test
+    void shouldCompareCmToMm() throws NegativeLengthException {
+        Length cm = Length.cm(1);
+        Length mm = Length.mm(10);
+        assertEquals(cm, mm);
+    }
 }

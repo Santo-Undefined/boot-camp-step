@@ -24,6 +24,10 @@ public class Length {
         return create(value);
     }
 
+    public static Length mm(double value) throws NegativeLengthException {
+        return create(value / 10);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Length length)) return false;
