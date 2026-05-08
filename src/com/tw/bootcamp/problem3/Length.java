@@ -1,6 +1,7 @@
 package com.tw.bootcamp.problem3;
 
 public class Length {
+    private static final double TOLERANCE = 0.001;
     public static final int FEET_CONVERSION_FACTOR = 30;
     public static final double INCH_CONVERSION_FACTOR = 2.5;
     public static final int MM_CONVERSION_FACTOR = 10;
@@ -34,11 +35,15 @@ public class Length {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Length length)) return false;
-        return Double.compare(value, length.value) == 0;
+        return isWithinTolerance(length.value);
     }
 
     public boolean isEqual(Length v){
-        return value == v.value;
+        return isWithinTolerance(v.value);
+    }
+
+    private boolean isWithinTolerance (double otherValue){
+        return Math.abs(value - otherValue) < TOLERANCE;
     }
 
     public Length add(Length length) {

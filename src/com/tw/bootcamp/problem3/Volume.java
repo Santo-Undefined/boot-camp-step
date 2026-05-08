@@ -2,7 +2,9 @@ package com.tw.bootcamp.problem3;
 
 public class Volume {
 
+
     public static final double LITER_CONVERSION_FACTOR = 3.78;
+    private static final double TOLERANCE = 0.001;
     private final double value;
 
     public Volume(double value) {
@@ -24,11 +26,15 @@ public class Volume {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Volume volume)) return false;
-        return Double.compare(value, volume.value) == 0;
+        return isWithinTolerance(volume.value);
     }
 
     public boolean isEqual(Volume v){
-        return value == v.value;
+        return isWithinTolerance(v.value);
+    }
+
+    private boolean isWithinTolerance (double otherValue){
+        return Math.abs(value - otherValue) < TOLERANCE;
     }
 
     public Volume add(Volume length) {
