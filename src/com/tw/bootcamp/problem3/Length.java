@@ -7,16 +7,21 @@ public class Length {
         this.value = value;
     }
 
-    public static Length feet(double value) {
-        return new Length(value * 30);
+    private static Length create(double value) throws NegativeLengthException {
+        if (value < 0) throw new NegativeLengthException("Length can't be negative");
+        return  new Length(value);
     }
 
-    public static Length inch(double value) {
-        return new Length(value * 2.5);
+    public static Length feet(double value) throws NegativeLengthException {
+        return create(value * 30);
     }
 
-    public static Length cm(double value) {
-        return new Length(value);
+    public static Length inch(double value) throws NegativeLengthException {
+        return create(value * 2.5);
+    }
+
+    public static Length cm(double value) throws NegativeLengthException {
+        return create(value);
     }
 
     public boolean isEqual(Length len) {
