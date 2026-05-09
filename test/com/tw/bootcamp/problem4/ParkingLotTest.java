@@ -29,4 +29,6 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(plot);
         assertFalse(parkingLot.isFull());
     }
+
+
 }

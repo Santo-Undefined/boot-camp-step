@@ -2,34 +2,17 @@ package com.tw.bootcamp.problem3;
 
 public class Length {
     private static final double TOLERANCE = 0.001;
-    public static final int FEET_CONVERSION_FACTOR = 30;
-    public static final double INCH_CONVERSION_FACTOR = 2.5;
-    public static final int MM_CONVERSION_FACTOR = 10;
     private final double value;
+    private final LengthUnit unit;
 
-    private Length(double value) {
+    private Length(double value, LengthUnit unit) {
         this.value = value;
+        this.unit = unit;
     }
 
-    private static Length create(double value) throws NegativeLengthException {
+    public static Length create(double value, LengthUnit unit) throws NegativeLengthException {
         if (value < 0) throw new NegativeLengthException("Length can't be negative");
-        return new Length(value);
-    }
-
-    public static Length feet(double value) throws NegativeLengthException {
-        return create(value * FEET_CONVERSION_FACTOR);
-    }
-
-    public static Length inch(double value) throws NegativeLengthException {
-        return create(value * INCH_CONVERSION_FACTOR);
-    }
-
-    public static Length cm(double value) throws NegativeLengthException {
-        return create(value);
-    }
-
-    public static Length mm(double value) throws NegativeLengthException {
-        return create(value / MM_CONVERSION_FACTOR);
+        return new Length(unit.toStd(value), unit);
     }
 
     @Override
@@ -38,15 +21,15 @@ public class Length {
         return isWithinTolerance(length.value);
     }
 
-    public boolean isEqual(Length l){
-        return isWithinTolerance(l.value);
+    public boolean isSame(Length l) {
+        return isWithinTolerance(l.value) && unit == l.unit;
     }
 
-    private boolean isWithinTolerance (double otherValue){
+    private boolean isWithinTolerance(double otherValue) {
         return Math.abs(value - otherValue) < TOLERANCE;
     }
 
     public Length add(Length length) {
-        return create(value + length.value);
+        return create(unit.toActual(value + length.value), this.unit);
     }
 }

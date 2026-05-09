@@ -7,30 +7,43 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VolumeTest {
     @Test
     void shouldCompareGallonAndLiter() throws NegativeVolumeException {
-        Volume oneGallon = Volume.gallon(1);
-        Volume liter = Volume.liter(3.78);
-
-        assertTrue(oneGallon.isEqual(liter));
+        Volume oneGallon = Volume.create(1, VolumeUnit.GALLON);
+        Volume liter = Volume.create(3.78, VolumeUnit.LTR);
+        assertEquals(oneGallon,liter);
     }
 
     @Test
     void shouldCompareGallonAndLiterForDifferentVolume() throws NegativeVolumeException {
-        Volume oneGallon = Volume.gallon(1);
-        Volume liter = Volume.liter(3);
+        Volume oneGallon = Volume.create(1,VolumeUnit.GALLON);
+        Volume liter = Volume.create(3, VolumeUnit.LTR);
 
         assertNotEquals(oneGallon, liter);
     }
 
     @Test
     void shouldThrowExceptionWhenVolumeIsNegative() {
-        assertThrows(NegativeVolumeException.class, () -> Volume.gallon(-1));
+        assertThrows(NegativeVolumeException.class, () -> Volume.create(-1, VolumeUnit.LTR));
     }
 
     @Test
     void shouldAddTwoUnitsOfVolume() {
-        Volume oneGallon = Volume.gallon(1);
-        Volume oneLiter = Volume.liter(1);
+        Volume oneGallon = Volume.create(1, VolumeUnit.GALLON);
+        Volume oneLiter = Volume.create(1, VolumeUnit.LTR);
 
-        assertEquals(Volume.liter(4.78), oneLiter.add(oneGallon));
+        assertEquals(Volume.create(4.78,VolumeUnit.GALLON), oneLiter.add(oneGallon));
+    }
+
+    @Test
+    void shouldReturnTrueSameForTwoSameQuantity() {
+        Volume gallon1 = Volume.create(1,VolumeUnit.GALLON);
+        Volume gallon2 = Volume.create(1,VolumeUnit.GALLON);
+        assertTrue(gallon1.isSame(gallon2));
+    }
+
+    @Test
+    void shouldReturnFalseForTwoDifferentQuantity() {
+        Volume gallon = Volume.create(1,VolumeUnit.GALLON);
+        Volume liter = Volume.create(3.78,VolumeUnit.LTR);
+        assertFalse(gallon.isSame(liter));
     }
 }
