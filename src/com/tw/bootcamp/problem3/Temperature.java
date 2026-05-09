@@ -1,7 +1,5 @@
 package com.tw.bootcamp.problem3;
 
-import java.util.Objects;
-
 public class Temperature {
 
     private static final double TOLERANCE = 0.005;
