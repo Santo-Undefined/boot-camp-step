@@ -11,14 +11,10 @@ public class ParkingDeckTest {
     void shouldHandleSingleParkingLot() {
         ParkingDeck parkingDeck = new ParkingDeck();
 
-        Plot plot1 = new Plot(5);
-        ParkingLot parkingLot1 = new ParkingLot(plot1);
+        ParkingLot parkingLot1 = new ParkingLot(5);
         int parkingLotId = parkingDeck.addParkingLot(parkingLot1);
+        ParkingLot updatedParkingLot = parkingDeck.park(parkingLotId);
 
-        Car car = new Car();
-        ParkingLot updatedParkingLot = parkingDeck.park(parkingLotId, car);
-
-        assertNotEquals(parkingLot1, updatedParkingLot);
         assertEquals(4, updatedParkingLot.remainingSlots());
     }
 
@@ -26,17 +22,14 @@ public class ParkingDeckTest {
     void shouldHandleMultipleParkingLot() {
         ParkingDeck parkingDeck = new ParkingDeck();
 
-        Plot plot1 = new Plot(5);
-        Plot plot2 = new Plot(3);
-        ParkingLot parkingLot1 = new ParkingLot(plot1);
-        ParkingLot parkingLot2 = new ParkingLot(plot2);
+        ParkingLot parkingLot1 = new ParkingLot(5);
+        ParkingLot parkingLot2 = new ParkingLot(3);
+
         int parkingLotId1 = parkingDeck.addParkingLot(parkingLot1);
         int parkingLotId2 = parkingDeck.addParkingLot(parkingLot2);
 
-        Car car = new Car();
-
-        ParkingLot updatedParkingLot1 = parkingDeck.park(parkingLotId1, car);
-        ParkingLot updatedParkingLot2 = parkingDeck.park(parkingLotId2, car);
+        ParkingLot updatedParkingLot1 = parkingDeck.park(parkingLotId1);
+        ParkingLot updatedParkingLot2 = parkingDeck.park(parkingLotId2);
 
         assertEquals(4, updatedParkingLot1.remainingSlots());
         assertEquals(2, updatedParkingLot2.remainingSlots());

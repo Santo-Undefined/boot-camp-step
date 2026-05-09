@@ -12,11 +12,8 @@ public class ParkingDeck {
         return id++;
     }
 
-    public ParkingLot park(int parkingLotId, Car car) {
+    public ParkingLot park(int parkingLotId) {
         ParkingLot parkingLot = deck.get(parkingLotId);
-        ParkingLot updatedParkingLot = parkingLot.park(car);
-        deck.put(parkingLotId, updatedParkingLot);
-
-        return updatedParkingLot;
+        return parkingLot.park();
     }
 }

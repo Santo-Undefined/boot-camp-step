@@ -1,22 +1,24 @@
 package com.tw.bootcamp.problem4;
 
 public class ParkingLot {
-    private final Plot plot;
+    private int space;
 
-    public ParkingLot(Plot plot) {
-        this.plot = plot;
+    public ParkingLot(int size) {
+        this.space = size;
     }
 
-    public ParkingLot park(Car car) {
-        plot.park(car);
-        return new ParkingLot(plot);
+    public ParkingLot park() {
+        if (isFull()) return null;
+        this.space--;
+
+        return this;
     }
 
     public int remainingSlots(){
-        return plot.remainingSpace();
+        return space;
     }
 
     public boolean isFull() {
-        return plot.isFull();
+        return space == 0;
     }
 }

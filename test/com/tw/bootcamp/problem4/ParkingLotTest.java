@@ -7,28 +7,21 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParkingLotTest {
     @Test
     void shouldBeAbleToParkACar() {
-        Plot plot = new Plot(5);
-        ParkingLot parkingLot = new ParkingLot(plot);
-        Car car = new Car();
-        ParkingLot updatedParking = parkingLot.park(car);
+        ParkingLot parkingLot = new ParkingLot(5);
+        ParkingLot updatedParking = parkingLot.park();
         assertEquals(4, updatedParking.remainingSlots());
     }
 
     @Test
     void shouldKnowIfTheParkingIsFullWhenItIsFull() {
-        Plot plot = new Plot(1);
-        ParkingLot parkingLot = new ParkingLot(plot);
-        Car car = new Car();
-        ParkingLot updatedParking = parkingLot.park(car);
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot updatedParking = parkingLot.park();
         assertTrue(updatedParking.isFull());
     }
 
     @Test
     void shouldKnowParkingIsNotFullWhenItIsNotFull() {
-        Plot plot = new Plot(1);
-        ParkingLot parkingLot = new ParkingLot(plot);
+        ParkingLot parkingLot = new ParkingLot(5);
         assertFalse(parkingLot.isFull());
     }
-
-
 }
