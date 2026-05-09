@@ -30,4 +30,34 @@ public class BagTest {
         }
         assertThrows(MaxCapacityException.class, () -> bag.addBall(Ball.GREEN));
     }
+
+    @Test
+    void redBallsCannotBeMoreThanDoubleTheGreenBalls() {
+        Bag bag = new Bag();
+        bag.addBall(Ball.GREEN);
+        bag.addBall(Ball.RED);
+        bag.addBall(Ball.RED);
+        assertThrows(MaxCapacityException.class, () -> bag.addBall(Ball.RED));
+    }
+
+    @Test
+    void shouldThrowIfTheYellowBallCountExceeds40PercentOfTotalBallCount() {
+        Bag bag = new Bag();
+        bag.addBall(Ball.GREEN);
+        bag.addBall(Ball.GREEN);
+        bag.addBall(Ball.GREEN);
+        bag.addBall(Ball.YELLOW);
+        bag.addBall(Ball.YELLOW);
+        assertThrows(MaxCapacityException.class, () -> bag.addBall(Ball.YELLOW));
+    }
+
+    @Test
+    void shouldBeAbleToAddAnyNumberOfBlueBallsUptoLimit() {
+        Bag bag = new Bag();
+        for (int i = 0; i < 11; i++) {
+            bag.addBall(Ball.BLUE);
+        }
+
+        assertDoesNotThrow(() -> bag.addBall(Ball.BLUE));
+    }
 }
