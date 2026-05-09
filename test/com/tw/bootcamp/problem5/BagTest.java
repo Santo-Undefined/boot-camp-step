@@ -69,7 +69,7 @@ public class BagTest {
         }
 
         String summary = bag.summary();
-        String expectedSummary = "BLUE: 11";
+        String expectedSummary = "BLUE: 11\n\nTotal: 11";
         assertEquals( expectedSummary,summary);
     }
 
@@ -82,7 +82,7 @@ public class BagTest {
         bag.addBall(Ball.GREEN);
 
         String summary = bag.summary();
-        String expectedSummary = "BLUE: 11\nGREEN: 1";
+        String expectedSummary = "BLUE: 11\nGREEN: 1\n\nTotal: 12";
         IO.println(expectedSummary);
         assertEquals( expectedSummary,summary);
     }

@@ -5,7 +5,7 @@ import java.util.*;
 public class Bag {
 
     private final int capacity = 12;
-    private final Map<Ball, Integer> store = new HashMap<>();
+    private final Map<Ball, Integer> store = new LinkedHashMap<>();
 
     public void addBall(Ball b) throws MaxCapacityException {
         if (isFull()) throw new MaxCapacityException("Bag is full");
@@ -63,7 +63,8 @@ public class Bag {
         for(Ball ball: store.keySet()) {
             sb.append(ball).append(": ").append(store.get(ball)).append("\n");
         }
+        sb.append("\nTotal: ").append(totalBallCount());
 
-        return sb.toString().trim();
+        return sb.toString();
     }
 }
