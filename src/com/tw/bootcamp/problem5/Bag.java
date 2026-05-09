@@ -58,4 +58,12 @@ public class Bag {
         return Objects.equals(store, bag.store);
     }
 
+    public String summary() {
+        StringBuilder sb = new StringBuilder();
+        for(Ball ball: store.keySet()) {
+            sb.append(ball).append(": ").append(store.get(ball)).append("\n");
+        }
+
+        return sb.toString().trim();
+    }
 }

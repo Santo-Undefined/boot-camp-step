@@ -60,4 +60,30 @@ public class BagTest {
 
         assertDoesNotThrow(() -> bag.addBall(Ball.BLUE));
     }
+
+    @Test
+    void shouldAbleToGenerateTheSummaryForSingleColoredBall() {
+        Bag bag = new Bag();
+        for (int i = 0; i < 11; i++) {
+            bag.addBall(Ball.BLUE);
+        }
+
+        String summary = bag.summary();
+        String expectedSummary = "BLUE: 11";
+        assertEquals( expectedSummary,summary);
+    }
+
+    @Test
+    void shouldAbleToGenerateTheSummaryForMultiColoredBall() {
+        Bag bag = new Bag();
+        for (int i = 0; i < 11; i++) {
+            bag.addBall(Ball.BLUE);
+        }
+        bag.addBall(Ball.GREEN);
+
+        String summary = bag.summary();
+        String expectedSummary = "BLUE: 11\nGREEN: 1";
+        IO.println(expectedSummary);
+        assertEquals( expectedSummary,summary);
+    }
 }
