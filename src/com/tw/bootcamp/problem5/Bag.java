@@ -4,13 +4,39 @@ import java.util.*;
 
 public class Bag {
 
-    private final int capacity = 12;
+    //    private final int capacity = 12;
     private final Map<Ball, Integer> store = new LinkedHashMap<>();
+    private final List<Rules> rules;
+
+    public Bag(List<Rules> rules) {
+        this.rules = rules;
+    }
+
+    private boolean validateRules() {
+        BagState state = createBagState();
+        for (Rules r : rules) {
+            boolean isValid = r.validate(state);
+            if (!isValid) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private BagState createBagState() {
+        int blue = getBallCount(Ball.BLUE);
+        int yellow = getBallCount(Ball.YELLOW);
+        int green = getBallCount(Ball.GREEN);
+        int red = getBallCount(Ball.RED);
+        int total = totalBallCount();
+        return new BagState(red, blue, yellow, green, total);
+    }
 
     public void addBall(Ball b) throws MaxCapacityException {
-        if (isFull()) throw new MaxCapacityException("Bag is full");
+        if (!validateRules()) throw new MaxCapacityException("action not valid");
+//        if (isFull()) throw new MaxCapacityException("Bag is full");
         int ballCount = store.getOrDefault(b, 0);
-        if (!canBeAdded(b)) throw new MaxCapacityException("Given colored ball exceeded limit");
+//        if (!canBeAdded(b)) throw new MaxCapacityException("Given colored ball exceeded limit");
 
         store.put(b, ballCount + 1);
     }
@@ -24,9 +50,9 @@ public class Bag {
         return store.getOrDefault(b, 0);
     }
 
-    private boolean isFull() {
-        return totalBallCount() == capacity;
-    }
+//    private boolean isFull() {
+//        return totalBallCount() == capacity;
+//    }
 
     private boolean canBeAdded(Ball b) {
         switch (b) {
@@ -60,7 +86,7 @@ public class Bag {
 
     public String summary() {
         StringBuilder sb = new StringBuilder();
-        for(Ball ball: store.keySet()) {
+        for (Ball ball : store.keySet()) {
             sb.append(ball).append(": ").append(store.get(ball)).append("\n");
         }
         sb.append("\nTotal: ").append(totalBallCount());
